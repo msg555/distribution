@@ -61,12 +61,12 @@ func (cbds *cachedBlobStatter) Stat(ctx context.Context, dgst digest.Digest) (di
 }
 
 func (cbds *cachedBlobStatter) Clear(ctx context.Context, dgst digest.Digest) error {
-	err := cbds.cache.Clear(ctx, dgst)
+	err := cbds.backend.Clear(ctx, dgst)
 	if err != nil {
 		return err
 	}
 
-	err = cbds.backend.Clear(ctx, dgst)
+	err = cbds.cache.Clear(ctx, dgst)
 	if err != nil {
 		return err
 	}
